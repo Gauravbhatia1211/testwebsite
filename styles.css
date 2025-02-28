@@ -3,6 +3,8 @@ html, body {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
+  margin: 0;
+  padding: 0;
 }
 
 .fullpage-section {
@@ -13,21 +15,6 @@ html, body {
   justify-content: center;
   text-align: center;
   position: relative;
-}
-
-/* 3D Effects */
-.product-card {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-}
-
-.product-card:hover {
-  transform: rotateY(15deg) scale(1.1);
-}
-
-.product-image {
-  transform: translateZ(20px);
 }
 
 /* Hero Section */
@@ -54,6 +41,48 @@ html, body {
   animation: bounce 2s infinite;
 }
 
+/* About Section */
+.about {
+  background: #f9f9f9;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.about-content img {
+  width: 300px;
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Products Section */
+.products {
+  background: #fff;
+}
+
+.product-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.product-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.product-card:hover {
+  transform: rotateY(15deg) scale(1.1);
+}
+
+.product-image {
+  transform: translateZ(20px);
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -64,4 +93,9 @@ html, body {
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-20px); }
   60% { transform: translateY(-10px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }

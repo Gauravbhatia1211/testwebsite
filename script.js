@@ -2,16 +2,23 @@
 document.addEventListener('wheel', (e) => {
   e.preventDefault();
   const delta = e.deltaY;
-  const currentSection = document.querySelector('.fullpage-section:target');
   const sections = document.querySelectorAll('.fullpage-section');
-  let targetSection;
+  let currentSectionIndex = 0;
 
-  if (delta > 0) {
+  sections.forEach((section, index) => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top >= 0 && rect.top <= window.innerHeight) {
+      currentSectionIndex = index;
+    }
+  });
+
+  let targetSection;
+  if (delta > 0 && currentSectionIndex < sections.length - 1) {
     // Scroll down
-    targetSection = currentSection ? currentSection.nextElementSibling : sections[0];
-  } else {
+    targetSection = sections[currentSectionIndex + 1];
+  } else if (delta < 0 && currentSectionIndex > 0) {
     // Scroll up
-    targetSection = currentSection ? currentSection.previousElementSibling : sections[0];
+    targetSection = sections[currentSectionIndex - 1];
   }
 
   if (targetSection) {
